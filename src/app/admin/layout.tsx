@@ -12,15 +12,8 @@ export default async function AdminLayout({
 
   if (!user) redirect("/auth")
 
-  // Check role from profiles table
-  const { data: profileRaw } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .single()
-  const profile = profileRaw as { role: string } | null
-
-  const role = profile?.role ?? "user"
+  // Check role from user metadata (set via Supabase Admin API)
+  const role = (user.app_metadata?.role as string) ?? "user"
   if (!["admin", "editor"].includes(role)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-dark px-4">
