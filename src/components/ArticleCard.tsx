@@ -16,10 +16,9 @@ export default function ArticleCard({ article, index, variant = 'grid' }: Props)
         display: 'block',
         padding: '18px 20px',
         borderBottom: '0.5px solid var(--border)',
-        flex: 1,
         transition: 'background 0.2s',
       }}
-        className="hover-bg"
+        className={`hover-bg article-card article-card-side`}
       >
         <span className="tag" style={{ marginBottom: 8, display: 'inline-block' }}>{article.category}</span>
         <p style={{
@@ -52,7 +51,9 @@ export default function ArticleCard({ article, index, variant = 'grid' }: Props)
         background: article.cover_url
           ? `linear-gradient(to top, rgba(10,10,15,0.95) 40%, rgba(10,10,15,0.4) 100%), url(${article.cover_url}) center/cover`
           : 'repeating-linear-gradient(45deg, rgba(212,168,83,0.03) 0px, rgba(212,168,83,0.03) 1px, transparent 1px, transparent 20px)',
-      }}>
+      }}
+        className="article-card article-card-hero hover-bg"
+      >
         <span className="tag" style={{ marginBottom: 12 }}>{article.category}</span>
         <h2 style={{
           fontFamily: 'var(--font-serif)',
@@ -83,7 +84,7 @@ export default function ArticleCard({ article, index, variant = 'grid' }: Props)
       borderBottom: '0.5px solid var(--border)',
       transition: 'background 0.2s',
     }}
-      className="hover-bg"
+      className={`hover-bg article-card article-card-grid`}
     >
       <div style={{
         fontSize: 30,

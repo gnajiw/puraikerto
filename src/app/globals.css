@@ -104,3 +104,49 @@ img { display: block; max-width: 100%; }
   padding: 3px 8px;
   border-radius: 3px;
 }
+
+/* Mobile article cards — larger tap target & readability */
+.article-card {}
+
+@media (max-width: 768px) {
+  .article-card-side,
+  .article-card-grid {
+    padding: 24px !important;
+  }
+  .article-card-side p,
+  .article-card-grid p {
+    font-size: 15px !important;
+  }
+  .article-card-side span,
+  .article-card-grid span {
+    font-size: 13px !important;
+  }
+}
+
+/* Article page layout — responsive */
+.article-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+}
+.article-sidebar {
+  padding: 32px 24px 0;
+}
+.back-link {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+/* Mobile responsive (≤ 768px) */
+@media (max-width: 768px) {
+  .article-layout {
+    grid-template-columns: 1fr;
+  }
+  .article-sidebar {
+    padding: 24px;
+  }
+  .back-link {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}

@@ -65,8 +65,7 @@ export default async function ArticlePage({ params }: Props) {
           </span>
         </div>
 
-        {/* ARTICLE */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px' }}>
+        <div className="article-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 320px' }}>
 
           {/* Main content */}
           <article style={{
@@ -130,7 +129,7 @@ export default async function ArticlePage({ params }: Props) {
           </article>
 
           {/* Sidebar */}
-          <aside style={{ padding: '32px 24px 0' }}>
+          <aside className="article-sidebar" style={{ padding: '32px 24px 0' }}>
             {related.length > 0 && (
               <>
                 <p style={{
@@ -169,7 +168,7 @@ export default async function ArticlePage({ params }: Props) {
             )}
 
             {/* Back to home */}
-            <Link href="/" style={{
+            <Link href="/" className="back-link" style={{
               display: 'inline-block',
               marginTop: 24,
               fontSize: 11,
