@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1A5F7A;
+  --color-secondary: #E8B923;
+  --color-accent: #FF6B35;
+  --color-dark: #0f172a;
+  --color-dark-card: #1e293b;
+  --color-card: #334155;
+  --color-text-muted: #94a3b8;
+  --color-border: #475569;
+  --color-ai: #0ea5e9;
+  --color-news: #f59e0b;
+  --color-community: #10b981;
+  --color-purple: #8b5cf6;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  background: var(--color-dark);
+  color: #f8fafc;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
