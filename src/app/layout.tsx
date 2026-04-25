@@ -1,34 +1,27 @@
-import type { Metadata } from "next"
-import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google"
-import "./globals.css"
-import { Navbar } from "@/components/layout/Navbar"
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-})
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: "700",
-})
+// app/layout.tsx
+import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Puraikerto.my.id - Pusat Informasi AI Purwokerto & Berita Lokal Banyumas",
+  title: {
+    default: 'Puraikerto — Berita AI dari Purwokerto',
+    template: '%s · Puraikerto',
+  },
   description:
-    "Pusat informasi ekosistem Artificial Intelligence Purwokerto & agregasi berita lokal Kabupaten Banyumas dalam satu platform.",
+    'Portal berita kecerdasan buatan pilihan — dirangkum dari Purwokerto, untuk pembaca di mana saja.',
+  metadataBase: new URL('https://puraikerto.my.id'),
+  openGraph: {
+    siteName: 'Puraikerto',
+    locale: 'id_ID',
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image' },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${plusJakarta.variable} ${playfair.variable}`}>
-      <body className="antialiased">
-        <Navbar />
-        {children}
-      </body>
+    <html lang="id">
+      <body>{children}</body>
     </html>
   )
 }
