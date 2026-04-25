@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { Search, Menu, X, Brain, Newspaper, Users, MapPin } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Search, Menu, X } from "lucide-react"
+import { useUser } from "@/lib/useUser"
+import { UserMenu } from "@/components/auth/UserMenu"
 
 const navLinks = [
   { href: "/", label: "Beranda" },
@@ -14,6 +15,7 @@ const navLinks = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { user, loading } = useUser()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-dark/95 backdrop-blur-md border-b border-border">
@@ -44,12 +46,20 @@ export function Navbar() {
               className="bg-transparent text-sm text-white outline-none w-40 placeholder:text-text-muted"
             />
           </div>
-          <Link
-            href="/auth"
-            className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all"
-          >
-            Masuk
-          </Link>
+
+          {loading ? (
+            <div className="w-20 h-8 bg-card rounded-lg animate-pulse" />
+          ) : user ? (
+            <UserMenu user={user} />
+          ) : (
+            <Link
+              href="/auth"
+              className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition-all"
+            >
+              Masuk
+            </Link>
+          )}
+
           <button
             className="md:hidden text-white"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -75,7 +85,7 @@ export function Navbar() {
             href="/auth"
             className="block text-center bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg"
           >
-            Masuk
+            {user ? "Dashboard" : "Masuk"}
           </Link>
         </div>
       )}
