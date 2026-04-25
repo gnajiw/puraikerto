@@ -10,13 +10,9 @@ interface Props {
   params: { slug: string }
 }
 
-export async function generateStaticParams() {
-  const articles = await getAllArticles()
-  return articles.map(a => ({ slug: a.slug }))
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug)
+  const { slug } = await params
+  const article = await getArticleBySlug(slug)
   if (!article) return { title: 'Artikel tidak ditemukan' }
   return {
     title: article.title,
@@ -48,7 +44,8 @@ function renderMarkdown(md: string): string {
 export const revalidate = 60
 
 export default async function ArticlePage({ params }: Props) {
-  const article = await getArticleBySlug(params.slug)
+  const { slug } = await params
+  const article = await getArticleBySlug(slug)
   if (!article) notFound()
 
   const related = await getRelatedArticles(article.category, article.slug)
